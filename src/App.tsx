@@ -1,35 +1,40 @@
+
+import { Box, Container } from '@chakra-ui/react'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RigList } from './components'
+import { Text } from '@chakra-ui/react'
+
+const mockData = [
+  {
+    id: "eef779a9-0393-4148-b35b-bc10060a3fe1",
+    rig_name: "RIG-13B659",
+    temp_rig: 79,
+    end_ring_service: "2026-01-12",
+    rig_status: "maintenance" as const,
+    rig_location: "Location1",
+    rig_type: "Workstation",
+    rig_model: "RTX4080",
+    rig_ip_address: "192.168.52.224",
+    rig_port: 7994
+  },
+  // Adicione mais dados aqui...
+]
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedRig, setSelectedRig] = useState<string>()
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Box bg="gray.900" minH="100vh" py={6}>
+      <Text fontVariant={'-moz-initial'}>Hello World</Text>
+      <Container maxW="4xl">
+        <RigList
+          rigs={mockData}
+          selectedRigId={selectedRig}
+          onRigSelect={setSelectedRig}
+        />
+      </Container>
+    </Box>
   )
 }
 
-export default App
+export default App;
