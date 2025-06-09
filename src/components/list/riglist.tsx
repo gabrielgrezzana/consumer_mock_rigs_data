@@ -1,19 +1,8 @@
 import { VStack } from '@chakra-ui/react'
 import type { StackProps } from '@chakra-ui/react'
 import { RigCard } from '../card/rigcard'
+import type { RigData } from '../../types/rigs.interface'
 
-interface RigData {
-  id: string
-  rig_name: string
-  temp_rig: number
-  rig_status: 'online' | 'maintenance' | 'offline' | 'warning'
-  rig_location: string
-  rig_type: string
-  rig_model: string
-  rig_ip_address: string
-  rig_port: number
-  end_ring_service: string
-}
 
 interface RigListProps extends StackProps {
   rigs: RigData[]
