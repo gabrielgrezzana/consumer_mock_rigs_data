@@ -2,22 +2,10 @@ import { Box, HStack, Text, Flex, Icon } from '@chakra-ui/react'
 import { FaCircle } from 'react-icons/fa'
 import { StatusBadge } from '../badge/statusbagde'
 import { Badge } from '@chakra-ui/react'
-
-interface RigData {
-  id: string
-  rig_name: string
-  temp_rig: number
-  rig_status: 'online' | 'maintenance' | 'offline' | 'warning'
-  rig_location: string
-  rig_type: string
-  rig_model: string
-  rig_ip_address: string
-  rig_port: number
-  end_ring_service: string
-}
+import type { Rig } from '../../types/rigs.interface'
 
 interface RigCardProps {
-  rigData: RigData
+  rigData: Rig
   isSelected?: boolean
   onSelect?: (id: string) => void
   [key: string]: any
@@ -26,13 +14,13 @@ interface RigCardProps {
 export const RigCard = ({ rigData, isSelected = false, onSelect, ...props }: RigCardProps) => {
   const getStatusColor = () => {
     switch (rigData.rig_status) {
-      case 'online':
+      case 'active':
         return 'green.400'
       case 'maintenance':
         return 'yellow.400'
-      case 'warning':
+      case 'inactive':
         return 'orange.400'
-      case 'offline':
+      case 'error':
         return 'red.400'
       default:
         return 'gray.400'
